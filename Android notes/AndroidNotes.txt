@@ -1,0 +1,1164 @@
+
+app > java > com.example.myfirstapp > MainActivity
+This is the main activity (the entry point for your app). When you build and run the app, the system launches an instance of this Activity and loads its layout.
+
+app > res > layout > activity_main.xml
+This XML file defines the layout for the activity's UI. It contains a TextView element with the text "Hello world!".
+
+app > manifests > AndroidManifest.xml
+The manifest file describes the fundamental characteristics of the app and defines each of its components.
+
+Gradle Scripts > build.gradle
+You'll see two files with this name: one for the project and one for the "app" module. Each module has its own build.gradle file, but this project currently has just one module. You'll mostly work with the module's build.gradle file to configure how the Gradle tools compile and build your app.
+
+
+--------------------------------------------------------------------------------------------------------
+Udacity
+--------------------------------------------------------------------------------------------------------
+
+<TextView
+     android:text= "Rakesh Kumar"
+     android:background="@android:color/darker_gray"
+     android:layout_width="200dp"
+     android:layout_height="125dp" />
+	 
+
+Output:
+Displays happy birthday with darker_gray background color and with specified height and width.
+
+
+---------------------------
+
+Unit of width and height in android xml is dp.
+dp: Density-Independent pixels
+
+dp depends on the pixels on the screen. 
+if we define the size of an element in terms of pixels, it would be smaller on medium or high resolution device (having low pixels), and bigger in extra high resolution device (having more pixels).
+But we want to keep the size of the element same irrespective of the resolution of the device. That's why we define size in terms of dp (dips).
+
+All touch elements are advised to keep at least 48 pixels for them to be touchable by fingers.
+
+---------------------------
+
+https://labs.udacity.com/android-visualizer/#/android/text-view
+Link to try changing xml to see the view in the actual phone. (when you are yet to use android studio)
+
+---------------------------
+
+Instead of defining the hardcoded values for width and height, we can define wrap_content which will adjust according to the content inside it.
+
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+
+---------------------------
+
+android:textSize="45sp"
+
+sp is scale dependent pixels which is similar to dp but is used for fonts only. It adjusts based on the size of the screen.
+
+---------------------------
+
+Instead of providing the values as numbers, we can also use standard font size.
+
+android:textAppearance="?android:textAppearanceSmall"		14sp
+android:textAppearance="?android:textAppearanceMedium"		18sp
+android:textAppearance="?android:textAppearanceLarge"		22sp
+
+---------------------------
+
+we can also define other attributes like text color etc...
+
+android:textColor="@color/my_own_color"
+android:textColorLink="@color/my_own_color_link"
+
+---------------------------
+
+Instead of using color names, we can also use Hex color codes for background and font.
+
+android:background="#90EE90"
+android:textColor="#1E90FF"
+
+https://www.w3schools.com/colors/colors_hex.asp
+Link for color hex codes
+
+---------------------------
+
+To display an image:
+
+<ImageView
+    android:src="@drawable/cake"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scaleType="centerCrop"/>
+
+cake is an image placed in drawable folder. we don't need to provide extension.
+scaleType can be center, centerCrop etc.
+
+if the size of the image is smaller than the size of the screen, it will occupy only that space and scaleType won't matter.
+if size is defined more than the size of the screen, with scaleType as center, the image will occupy the its original size at the center of the screen.
+however if in this case the scaleType is defined as centerCrop, the image will adjust itself to the defined size and will go out of the screen. 
+
+---------------------------
+
+to find any xml attribute for the textview:
+1. search textview android in google
+2. open the textview result from developer.google.com
+3. search for the attribute
+
+eg: android:textStyle="bold"
+	android:textStyle="italic"
+	android:textStyle="bold|italic"
+	android:textAllCaps="true"
+	
+---------------------------
+ViewGroup
+---------------------------
+
+More than one views can be combined in a viewgroup.
+They can be textView or imageView.
+
+ViewGroup is also a view.
+ViewGroup is called the parent of views inside it.
+
+-------------------------
+
+Type of viewGroup:
+
+	1. Linear layout 
+	2. Relative layout
+	
+Linear layout viewGroup places its children in linear way. 
+	Horizontal : one after another horizontally
+	Vertical: One after another vertically
+	
+Relative layout viewGroup places its children relative to the screen or relative to other child.
+	Relative to the screen: one child relative to the top, another can be relative to the bottom, left, right or center
+	Relative to other children: one child relative to the left. another child relative to the right. another child right to the first child but below the second child.
+	
+-------------------------
+
+https://labs.udacity.com/android-visualizer/#/android/linear-layout
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Guest List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"  />
+
+    <TextView
+        android:text="Kunal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"  />
+
+</LinearLayout>
+
+-------------------------
+match_parent
+-------------------------
+
+instead of defining a fixed dp or wrap_content for width or height, we can define the width as match_parent.
+it will take the same width or height as that of the viewGroup. For the viewGroup, same as that of the screen.
+
+Fixed dp can cause the text to be cut, if it exceeds the dp length.
+wrap_content can cause uneven widths of the child elements, which does not look so good if background color is there.
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#90EE90">
+
+    <TextView
+        android:text="Guest List"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:background="#1E90FF"/>
+
+    <TextView
+        android:text="Kunal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:background="#1E90FF"/>
+    
+    <TextView
+        android:text="Rakesh Kumar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:background="#1E90FF"/>
+
+</LinearLayout>
+
+-------------------------
+XML namespaces
+-------------------------
+
+https://www.w3schools.com/xml/xml_namespaces.asp
+
+When different XMLs are mixed from developers, it creates a conflict. Example is:
+
+This XML carries table information:
+<table>
+  <tr>
+    <td>Apples</td>
+    <td>Bananas</td>
+  </tr>
+</table>
+
+This XML carries information about a furniture table:
+<table>
+  <name>African Coffee Table</name>
+  <width>80</width>
+  <length>120</length>
+</table>
+
+Since table tag is there in both the XMLs, it will create a conflict when they are combined.
+
+Solving XML conflicts with prefix:
+
+<h:table>
+  <h:tr>
+    <h:td>Apples</h:td>
+    <h:td>Bananas</h:td>
+  </h:tr>
+</h:table>
+
+<f:table>
+  <f:name>African Coffee Table</f:name>
+  <f:width>80</f:width>
+  <f:length>120</f:length>
+</f:table>
+
+Here XMLs will have no conflicts because the table tags are different.
+
+However, when using prefixes in XML, a namespace must be defined. 
+Format:
+		xmlns:prefix=URI
+		
+<root>
+
+<h:table xmlns:h="http://www.w3.org/TR/html4/">
+  <h:tr>
+    <h:td>Apples</h:td>
+    <h:td>Bananas</h:td>
+  </h:tr>
+</h:table>
+
+<f:table xmlns:f="https://www.w3schools.com/furniture">
+  <f:name>African Coffee Table</f:name>
+  <f:width>80</f:width>
+  <f:length>120</f:length>
+</f:table>
+
+</root>
+
+Or:
+
+<root xmlns:h="http://www.w3.org/TR/html4/"
+xmlns:f="https://www.w3schools.com/furniture">
+
+<h:table>
+  <h:tr>
+    <h:td>Apples</h:td>
+    <h:td>Bananas</h:td>
+  </h:tr>
+</h:table>
+
+<f:table>
+  <f:name>African Coffee Table</f:name>
+  <f:width>80</f:width>
+  <f:length>120</f:length>
+</f:table>
+
+</root>
+
+The purpose of URI is to give namespace an unique name.
+Companies use namespace as a pointer to a webpage containing namespace information.
+
+URI is universal resource locator which identifies an internet source. Eg: URL, URN.
+
+-------------------------
+layout_weight
+-------------------------
+
+If we define the textView with fixed size dp or wrap_content, the elements will take very less space on the screen and leave the rest of the screen unused.
+if we use match_parent, first element will take up the entire space of the screen and push other elements out of the screen.
+There is a way by which we can divide the available screen among the elements available so that there is no screen left irrespective of the size of the screen.
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#90EE90">
+
+    <TextView
+        android:text="Tom"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#1E90FF"/>
+
+    <TextView
+        android:text="Tim"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#1E90FF"/>
+
+    <TextView
+        android:text="Todd"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#1E90FF"/>
+
+</LinearLayout>
+
+For vertical orientation of the viewGroup, assign the height to 0dp and weight to 1 for each element for even distribution of the available space.
+Similarly, for horizontal orientation, assign width to 0dp and weight to 1.
+
+setting height or width 0dp in this case means it starts from 0dp and then is assigned the height or width as per weights assigned.
+
+For uneven distribution of the space. examples:
+if out of 3 elements, one element is assigned the weight 1 and rest 2 wrap_content, then other 2 elements will take the space they need and rest of the space will be assigned to the first element.
+if first 2 are assigned 1 then third element will take the space it needs and rest space is divided between first 2 elements.
+if all elements are assigned weight then they will be divided the space based on the weight assigned to them.
+
+0 weight means it will not stretch out beyond wrap_content. however it is not important to write it explicitely.
+
+-------------------------
+RelativeLayout
+-------------------------
+
+A text or image can be placed top, bottom, left or right of the viewgroup with the below code:
+
+android:layout_alignParentTop ="true"
+android:layout_alightParentBottom ="true"
+android:layout_alignParentLeft ="true"
+android:layout_alignParentRight="true"
+
+left top: top, left = true
+right top: top, right = true
+left bottom: left, bottom = true
+right bottom: right, bottom = true
+
+Apart from these, the element can also be placed in center by:
+
+android:layout_centerHorizontal="true"
+android:layout_centerVertical="true"
+
+
+
+<RelativeLayout
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:padding="16dp">
+ 
+   <TextView
+        android:text="I’m in this corner"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+ 
+    <TextView
+        android:text="No, up here"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+ 
+    <TextView
+        android:text="Wait, I’m here"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+ 
+    <TextView
+        android:text="Actually, I’m here"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true" />
+ 
+</RelativeLayout>
+
+-------------------------
+RelativeLayout wrt other siblings
+-------------------------
+
+We can use tags like:
+android:layout_toRightOf
+android:layout_toLeftOf
+android:layout_above
+android:layout_bottom
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff8000">
+    
+    <TextView
+        android:id="@+id/Ben_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Ben"	/>
+    <TextView
+        android:id="@+id/Lyla_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Lyla"	/>
+    <TextView
+        android:id="@+id/Jennie_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Jennie"	/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/Ben_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Kunal"	/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/Ben_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Kagure"	/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentBottom="true"
+        android:layout_above="@id/Lyla_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Natalie"	/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/Lyla_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Me"	/>
+    <TextView
+        android:id="@+id/Omuju_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/Jennie_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Omuju"	/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/Omuju_text_view"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="#0099ff"
+        android:text="Amy"	/>
+    
+</RelativeLayout>
+
+-------------------------
+Padding vs. Margin
+-------------------------
+
+For example, Content of the textView is "Hello!" with a background color of blue and parents has the background color as orange.
+
+if we defined 8dp of padding on all sides, the hello will be padded (given space with no content) on each sides with blue color, ie. the color of the textview.
+
+However, in case of 8dp of margin, the textview will get a spacing of 8dp on each side but with the orange color. ie. the color of the parent.
+
+So, we can say that Padding is handled by the textview, and margin is handled by the parent.
+
+Padding:
+
+android:paddingLeft="8dp"
+android:paddingRight="8dp"
+android:paddingTop="8dp"
+android:paddingBottom="8dp"
+or
+android:padding="8dp"
+
+the second statement provides the same padding in all directions. However by specifying paddings for different directions, we can use different padding sizes.
+
+Margin:
+
+android:layout_marginLeft="8dp"
+android:layout_marginRight="8dp"
+android:layout_marginTop="8dp"
+android:layout_marginBottom="8dp"
+or
+android:layout_margin="8dp"
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:src="@drawable/ocean"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:text="You're invited!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="45sp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:background="#009688"/>
+
+    <TextView
+        android:text="Bonfire at the beach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:background="#009688"/>
+
+</LinearLayout>
+
+-------------------------
+Resources
+-------------------------
+
+Every project has 2 main folders:	Java, Res 
+Java folder contains the java files for logic of the app.
+Res folder contains the resources like xml, different views or elements, dimensions, colors, etc...
+
+Whenever the app is compiled in android, there is a tool in android called as "aapt", it generates the "R" class. 
+
+"R" class contains the resource id for all resources in "res/" directory. 
+For each type of resources, there is a "R" subclass. eg: R.drawable
+For each resource there is a static integer. eg: R.drawable.icon
+
+-------------------------
+Accessing Resources
+-------------------------
+There are 2 ways in which resources can be accessed:
+
+In java file:
+R.String.hello
+where String is the resource type and hello is the resource.
+
+In XML:
+@String/hello
+
+-------------------------
+Create objects
+-------------------------
+
+ObjectDataType objectName = new ObjectDataType(inputArg);
+
+TextView textView = new TextView(context);
+ImageView img = new ImageView(context);
+ToggleButton toggle = new ToggleButton(context);
+Toast toast = Toast.makeText(context, text, duration);
+toast.show();
+eg: Toast.makeText(MainActivity.this, "This is the message", Toast.LENGTH_SHORT);
+
+Here the duration can either be LENGTH_SHORT or LENGTH_LONG.
+
+ToggleButton is to enable/disable anything (like on and off in one button)
+Toast is the text that appears for some time and then disappears.
+
+-------------------------
+Context
+-------------------------
+
+Context is an abstract class whose implementation is given by Android system. It helps in using the application resources, launching activities, broadcast and many more.
+
+It tells the compiler to which context activity or application your current belongs which you want to show. Mostly we give the context of activity while initializing the view.
+
+LinearLayout layout = new LinearLayout(ActivityName.this);
+or you can initialize a variable in that start of the activity like this
+
+private Context context;
+
+//in activity class 
+context=ActivityName.this;
+
+
+We can also pass "this" for context to the constructors.
+
+-------------------------
+Calling methods on objects 
+-------------------------
+
+objectName.methodName(argument);
+
+titleTextView.setText("Rakesh");
+titleTextView.setTextSize(18);
+warningTextView.setTextColor(Color.RED);
+welcomeImageView.setImageResource(R.drawable.cloud);
+
+-------------------------
+Access modifiers for methods 
+-------------------------
+
+From MainActivity class, we can only access the public methods and variables for different inbuilt classes (like TextView), not private.
+
+-------------------------
+
+textView.setMaxLines(2);
+It sets the max number of lines to 2. If the text is longer than that, then the text gets cut off.
+
+-------------------------
+
+Normally we put the xml layout in setContentView method of the ActivityMain class.
+It puts the xml layout when the app is built.
+
+-------------------------
+AppCompatActivity
+-------------------------
+
+MainActivity class inherits (extends) AppCompatActivity class. 
+AppCompatActivity gives us backward compatiability. It gives us the option to use the latest UI features while working on the old android devices.
+
+-------------------------
+
+TextView class extends View class
+View class extends Object class
+
+-------------------------
+
+findViewById(R.id.asfas);
+It returns an object of class View.
+If we want to use the methods of TextView class, we would need to cast it to TextView class.
+
+TextView textview = (TextView) findViewById(R.id.asfas);
+
+-------------------------
+Logs
+-------------------------
+
+Logs can be printed in the logcat section of android studio by below code:
+
+log.i("EnterpriseActivity.java","This is an information log");
+
+Like this, we can print logs with other different levels:
+log.e(String, String)	: Error
+log.w(String, String)	: Warning
+log.i(String, String)	: Information
+log.d(String, String)	: Debug
+log.v(String, String)	: Verbose
+
+This is the priority level of all log types. 
+Eg: If the log level is set to verbose while seeing the logs, it will show all logs of level verbose and above.
+If it is set to Error, it will only show error logs.
+
+https://developer.android.com/reference/android/util/Log?utm_source=udacity&utm_medium=course&utm_campaign=android_basics#e(java.lang.String,%20java.lang.String)
+
+-------------------------
+ScrollView
+-------------------------
+
+Vertical layout by default cannot scroll for more than 1 page if it exceeds a page.
+Scrolling can be achieved by adding <ScrollView>. Put entire XML into a ScrollView.
+
+Note: ScrollView can have only one child.
+
+
+-------------------------
+Intent
+-------------------------
+
+Intent is to take advantage of the functionality of other apps by calling them.
+eg: Clicking on a button on an app opens gmail to send an email to someone.
+Google search has a button which opens the google map with navigation.
+
+When we use the intent, we don't have to worry about which app is going to handle the thrown intent. There can be multiple apps on the device to handle it.
+eg: a link can open in either chrome or firefox or opera.
+
+In case if there are multiple apps to handle the intent, it shows a popup with apps that can handle the intent we threw. This popup is called disambiguation window. It throws the intent to the selected app.
+
+What is inside an Intent?
+An intent has mainly 2 types of information:
+	1. Action
+	2. Data
+It can have some extra information too:
+	- Category
+	- Component
+	- Extras
+
+Eg: Map intent contains this information
+	1. Action: ACTION_VIEW
+	2. Data: 47.6, -122.4		Latitude and longitude
+	
+	Dial intent contains this information:
+	1. Action: ACTION_DIAL
+	2. Data: phone number		Data URI (uniform resource identifier)
+	
+
+eg: To start map view
+
+	Intent intent = new Intent(Intent.ACTION_VIEW);
+	intent.setData(Uri.parse("geo:25.6784103,-100.4519881?z=19"));
+	if (intent.resolveActivity(getPackageManager()) != null) {
+		startActivity(intent);
+	}
+	
+	name of the intent is: ACTION_VIEW
+	the if condition checks that is there any app to handle this intent or not. if yes, then it will throw that intent. if there are multiple apps to handle the intent on the device, then android will show a window to select the app.
+	
+-------------------------
+LOCALIZATOIN
+-------------------------
+
+Localization means the app changes its language of its texts based on phone's chosen language. 
+
+Hence, the standard practice is to keep all the text separate from XML & java files.
+There is a file in res>values : strings.xml
+Here, we can define the string variables for all the text in the application.
+
+After we localize, say for spanish, it will have the folder structure like res>values>string.xml, res>values-es>string.xml
+
+In XMLs, we can refer to these strings as:
+<Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="submitOrder"
+            android:text="@string/orderButton" />
+			
+In java file, we can refer to them as:
+priceMessage += "\n" + getString(R.string.order_summary_thankYouMessage);
+
+In the values>strings.xml file, we can open the language editor and edit the language in tabular format.
+
+-------------------------
+xliff
+-------------------------
+
+If we want that certain part of the string should not be translated, then we can use xliff.
+
+<string name="order_summary_name">Name: <xliff:g id="name" example="Rakesh">%s</xliff:g></string>
+
+Here, the actual name will not be replaced. We need to provide the values in this format for xliff.
+
+-------------------------
+styles.XML
+-------------------------
+
+In res>values>styles.xml file, we can define a style and later can use the same style to multiple elements in the XML.
+
+It can be defined like this,
+<style name="HeaderTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+And it can be used in XML file like this,
+style="@style/HeaderTextStyle" 
+
+-------------------------
+Themes
+-------------------------
+
+We can also define the theme of the app. All elemnts within the app will inherit the theme from this. 
+For more customatizations in the styles xml, we can inherit the theme and apply more customizations for the style of different elements.
+
+Differnce between themes and styles:
+styles apply to the elements where we use the style property. However, theme applies by default to all elements in the app.
+
+Themes are also declared in the same file styles.xml.
+
+The material theme is defined as:
+
+@android:style/Theme.Material (dark version)
+@android:style/Theme.Material.Light (light version)
+@android:style/Theme.Material.Light.DarkActionBar
+
+dark version is for dark application theme, dark taskbar, dark app header.
+light version is for light everything.
+light.darkactionbar is for light app with dark actionbar
+
+
+Material theme was introduced in android lollypop. if we want to use it across older devices too, we can use AppCompat.
+
+<resources>
+    <style name="GreenText" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#00FF00</item>
+    </style>
+</resources>
+
+AppCompat stands for application compatiability.
+
+-------------------------
+
+Different color elements for an application are:
+colorPrimaryDark : Color of the status bar.
+colorPrimary : Color of application header.
+textColorPrimary : Color of the application header text.
+windowBackground : Color of the background window of the application.
+navigationBarColor : Color of the navigation bar.
+
+After inheriting from the theme for the AppTheme style tag, we can override different attributes (above).
+
+<style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#4CAF50</item>
+        <item name="colorPrimaryDark">#388E3C</item>
+        <item name="colorAccent">#8BC34A</item>
+    </style>
+
+-------------------------
+
+**************************************************************************************************************************************************************
+
+-------------------------
+MultiScreen app
+-------------------------
+
+In multiscreen apps, it sends the intent just like to any other apps but this time is it handled by another activity in the same app.
+
+To add a new activity to the app:
+New- activity - Empty activity (or any kind of activity)
+Each time an activity is added, an activity tag gets added to the AndroidManifest.xml file.
+
+-------------------------
+AndroidManifest.xml
+-------------------------
+
+Android manifest file is like a table of contents. It contains all the information about the app at one place.
+	1. Package name (identifier for the app)
+	2. Components of the app like - activities, intents
+	3. Information for notifications or using the camera
+	4. It helps set the minimum API
+	
+MainActivity tag contains an intent-filter, which tells to launch the main activity when the icon of the app is clicked.
+
+To start a new activity, we can create an intent.
+Intent i = new Intent(this, NumberActivity.class);
+startActivity(i);
+
+-------------------------
+Implicit intent vs Explicit Intent
+-------------------------
+
+Implicity intent is when you are not sure of which app/activity is going to handle the intent. The android system can decide by giving the user options if there are multiple apps installed on the device which are capable of handling the intent.
+
+eg: send email - can be handled by gmail app, browser, outlook app
+	open a website - can be handled by multiple browsers
+	
+Explicit intent is when you are sure about which app/activity is going to handle the intent. This is generally used to launch an activity in the same app.
+
+Note: We should never use explicit intent for using a third party app because we never know which all apps are installed or not installed on a device.
+
+
+Implicit intent contains:
+	1. Action
+	2. Data URI
+  it can also contain some additional information like:
+	3. Category
+	4. Components
+	5. Extras
+
+Explicity intent contains very specific information because it already knows which app is going to handle the intent:
+	1. Context
+	2. Component (usually class/activity)
+	3. Data URI (sometimes)
+	
+-------------------------
+
+eg of implicit intent:
+
+Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, "rakesh.xyzz@gmail.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject,name));
+        intent.putExtra(Intent.EXTRA_TEXT, summary);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+eg of explict intents: 
+
+Intent i = new Intent(this, NumberActivity.class);
+startActivity(i);
+
+Implicit intent constructor contains the action.
+Explicit intent constructor contains the calling activity and class file name of called activity.
+
+Both intents can contain extra.
+
+-------------------------
+Activity name
+-------------------------
+
+When we open an activity by an intent, it shows the main activity name by default. 
+We can change this to make it show a specific name by using label in the AndroidManifest file.
+
+<activity android:name=".NumberActivity"
+            android:label="@string/category_numbers"/>
+
+
+-------------------------
+Event Listeners
+-------------------------
+
+Android xml provide an "android:onClick" method to call a method when the click happens on a view.
+
+However, the standard is to define EventListeners instead of using onClick methods.
+
+View class contains different event listener interfaces. Each event listener contains a callback method. 
+These callback methods are called every time an event is registered by the user on the view.
+
+Callback methods in event listener interfaces:
+
+	1. onClick()
+	2. onLongClick()
+	3. onFocusChange() - when the user navigates onto or away from the view
+	4. onKey() - when the user is focused on the view and presses or releases a hardware key on the device.
+	5. onCreateContextMenu() - when the context menu is being built as a result of long click.
+
+	
+eg: When a click happens on a view, the framework will check if there is an onClick method defined in the onclickListener of the view. If yes, then it will be called.
+	
+	
+-------------------------
+Concrete class vs. Abstract class vs. Interfaces
+-------------------------
+
+Concreate classes have all of their methods declared and defined in their bodies. So, we can call those methods directly without defining them again.
+
+Abstract classes have some or all of their methods declared but not defined. If we want to use those methods, we need to declare a child class and define those methods by providing a body to those methods.
+eg: LinearLayout and RelativeLayout are the child classes of a view. Android does not want to define how the views should be laid out by default. It depends on the developer's preferences. So, they left the orientation and other layout methods undefined in the ViewGroup class.
+
+LinearLayout extends from ViewGroup class. 
+ViewGroup extends from View class.
+View extends from Object class.
+
+Interfaces are the classes that have only abstract methods.
+eg: onClickListener is an interface which has an abstract methods onClick(); ,which is defined by the developer as per their preferences.
+
+-------------------------
+
+Defining an event listener has 3 parts.
+
+1. Define an event listener (custom behavior for when the event happens) in the class created for that activity.
+	
+	In NumberActivity.java:
+	
+	public class NumberClickListener implements onClickListener{
+		@override
+		public void onClick(View view){
+			Toast.makeText(view.getContext(),"Open the list of numbers", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+2. Create an object instance of the event listener (using the constructor).
+
+	In MainActivity.java:
+	
+	NumberClickLister clickListener = new NumberClickListener();
+	
+3. Attach the listener to the view:
+
+	In MainActivity.java: in onCreate() method:
+	
+	buttonView.setOnClickListener(clickListener);
+
+-------------------------
+
+To minimize the number of lines of code, instead of declaring and using the object, we can use the object creation directly in the method call.
+
+	buttonView.setOnClickListener(new NumberClickLister());
+
+-------------------------
+
+Instead of creating a different class file for each event listener, we can use the code inline the method call.
+
+	buttonView.setOnClickListener(new View.onClickListener(){
+		@override
+		public void onClick(View view){
+			Toast.makeText(view.getContext(), "Open the list of numbers", Toast.LENGTH_SHORT).show();
+		}
+	});
+
+-------------------------
+Array
+-------------------------
+
+We can declare and initialize arrays in below ways:
+
+String words[];
+words = new String[3];
+words[0] = "rakesh";
+words[1] = "sergio";
+words[2] = "ismael";
+
+String[] words = {"rakesh","sergio","ismael"};
+
+String[] words = new String[] {"rakesh","sergio","ismael"};
+
+-------------------------
+ArrayList
+-------------------------
+
+ArrayList is an array with variable size and only object data type.
+We can change the size of an array list based on our requirement.
+
+Difference between array and arraylist:
+
+								Array				ArrayList
+1. Can change size				No					Yes
+2. Is a class					No					Yes
+3. Uses methods to access		No					Yes
+	and modify elements
+4. What can it store			Primitive data type	Objects only
+								and objects
+
+Eg of usage in android:
+ArrayList:
+	- To display the list of wifi's available in the area.
+	- To display the list of videos in a YouTube playlist.
+Array:
+	- Boolean array of days in the alarm
+	- Categories of apps in app store.
+	
+-------------------------
+
+ArrayList is a class which extends from AbstractList abstract class which inturn extends from List interface.
+It means that all the methods declared in List or AbstractList which are not defined, has to be given a body in the ArrayList.
+
+To create an ArrayList object:
+
+ArrayList<String> musicLibrary = new ArrayList<String>();
+
+Methods for ArrayList:
+
+musicLibrary.add("Arijit");
+musicLibrary.add(1,"Abhijeet");
+musicLibrary.get(0);
+musicLibrary.set(1,"Shreya");
+musicLibrary.remove(1);
+musicLibrary.remove("Abhijit");
+musicLibrary.size();
+
+To add more than one elements to an array list:
+
+String[] wordsArray = new String[] {"one","two","three","four","five","six","seven","eight","nine","ten"};
+ArrayList<String> words = new ArrayList<String>();
+words.addAll(Arrays.asList(wordsArray));
+
+-------------------------
+
+To display the elements from an ArrayList, we can use normal loop like this:
+
+for(int i=0; i<words.size() ;i++){
+    Log.v("NumbersActivity","Word at index " + i + " is: " + words.get(i));
+}
+
+Or a loop like this:
+
+for(String str:words)  
+    System.out.println(str);  
+} 
+
+-------------------------
+
+Note: LinkedList is same as ArrayList but it only allows sequential insertion or removal of the items.
+
+-------------------------
+ArrayAdapter and Scrap Views
+-------------------------
+
+In a linear layout (or relative layout), suppose if we have 1000 views. However, at a time, only 5 views can be displayed on the screen (in the viewgroup), then if we create all 1000 views at once, it will take too much memory.
+
+Instead, we can use ArrayAdapter. ArrayAdapter creates a scrap view list. All the views that are scrolled out of the screen are sent to the scrap view list and the new views to be included in the screen are taken from that list.
+It creates a recycling of the views or memory.
+
+eg: in the numbers screen, if all 1000 views are created, the memory usage by the app will jump from 11mb to 14mb in the current state when the numbers page is opened.
+however, if the ArrayAdapter is used, the memory usage will jump by barely 0.5mb.
+
+Note:
+To see the memory usage on the device:
+	1. Open Android profiler from the bottom taskbar.
+	2. Run the app and check the usage.
+
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------

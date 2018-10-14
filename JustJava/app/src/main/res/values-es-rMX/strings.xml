@@ -1,0 +1,18 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">JustJava</string>
+    <string name="whippedCream">Crema batida</string>
+    <string name="toppings">Coberturas</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">Cantidad</string>
+    <string name="nameField">Nombre</string>
+    <string name="order_summary_name">Nombre: <xliff:g id="name" example="Rakesh">%s</xliff:g></string>
+    <string name="order_summary_addWhippedCream">Añadir crema batida? %b</string>
+    <string name="order_summary_quantity">Candidate: %d</string>
+    <string name="order_summary_total">Total: $%s</string>
+    <string name="order_summary_thankYouMessage">Gracias</string>
+    <string name="orderButton">Orden</string>
+    <string name="email_subject">Solo orden de Java para %s</string>
+    <string name="toast_quantity_belowOne">La cantidad no puede ser inferior a 1</string>
+    <string name="toast_quantity_above100">La cantidad no puede ser superior a 100</string>
+    <string name="order_summary_addchocolate">Añadir chocolate? %b</string>
+</resources>

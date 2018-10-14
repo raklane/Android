@@ -1,0 +1,49 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">JustJava</string>
+
+    <!-- Header text for the list of toppings [CHAR LIMIT =20] -->
+    <string name="toppings">Toppings</string>
+
+    <!-- Header text for the list of whipped cream [CHAR LIMIT =20] -->
+    <string name="whippedCream">Whipped Cream</string>
+
+    <!-- Header text for the list of chocolate [CHAR LIMIT =20] -->
+    <string name="chocolate">Chocolate</string>
+
+    <!-- Header text for the quantity of the coffee [CHAR LIMIT =20] -->
+    <string name="quantity">Quantity</string>
+
+    <!-- Header text for the quantity of the coffee [CHAR LIMIT =20] -->
+    <string name="nameField">Name</string>
+
+    <!-- Order button for the coffee [CHAR LIMIT =20] -->
+    <string name="orderButton">Order</string>
+
+    <!-- Name in the order summary eg Name: Rakesh -->
+    <string name="order_summary_name">Name: <xliff:g id="name" example="Rakesh">%s</xliff:g></string>
+
+    <!-- Add whilpped cream or not in the order summary -->
+    <string name="order_summary_addWhippedCream">Add whipped cream? %b</string>
+
+    <!-- Add Chocolate or not in the order summary -->
+    <string name="order_summary_addchocolate">Add chocolate? %b</string>
+
+    <!-- Quantity in the order summary -->
+    <string name="order_summary_quantity">Quantity: %d</string>
+
+    <!-- Quantity in the order summary -->
+    <string name="order_summary_total">Total: $ %s</string>
+
+    <!-- Thank you message in the order summary -->
+    <string name="order_summary_thankYouMessage">Thank you!</string>
+
+    <!-- Email subject -->
+    <string name="email_subject">Just Java order for %s</string>
+
+    <!-- Toast message if the quantity is decreased below 1 -->
+    <string name="toast_quantity_belowOne">Quantity cannot be lesser than 1</string>
+
+    <!-- Toast message if the quantity is increased above 100 -->
+    <string name="toast_quantity_above100">Quantity cannot be greater than than 100</string>
+
+</resources>

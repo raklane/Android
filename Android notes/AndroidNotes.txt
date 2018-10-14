@@ -1130,10 +1130,52 @@ To see the memory usage on the device:
 	2. Run the app and check the usage.
 
 -------------------------
+ListView and ArrayAdapter
 -------------------------
+
+How it works:
+	1. When a ListView is associated with an ArrayAdapter, the ArrayAdapter passes the number of data it has.
+	2. ListView calls a method on ArrayAdapter with the position that user is on the screen. It can be 0,1 or anything.
+	3. ArrayAdapter returns the data at that position to the ListView and it continues until the ListView is full.
+	4. When the ListView is full, it stops asking for more data.
+	5. When the user scrolls, the method is called again with the position.
+	6. Now the scrolled out view is no longed required and it is passed to the scrap view list.
+	7. When the ListView calls the method again with a new position, it also passes the scrap view to be reused for creating a new view.
+	
+eg:
+	ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+    ListView listView = (ListView) findViewById(R.id.list);
+    listView.setAdapter(itemsAdapter);
+	
+	This constructor of ArrayAdapter class has 3 parameters. context, layout and list of items (in this case an ArrayList object).
+	simple_list_item_1 is an inbuilt layout provided by Android for the ListView.
+	
+	In the 3rd line, we are associating the ListView to the ArrayAdapter object that we created.
+	
+Note:
+	ArrayAdapter can be applied to ListView, GridView and Spinner (dropdowns)
+	
 -------------------------
+
+In Miwok app in each list item, we need to show 2 words - one for miwok, one for english.
+However, simple_list_item_1 listview has only 1 textview. 
+So instead of using android inbuilt listviews, we can define our own listview.
+
+right click on res - layout - new - layout resource file
+define a layout with two textviews.
+
 -------------------------
+Tools namespace
 -------------------------
+
+Android provides some tools attributes which we can use if we define a tools namespace for the layout.
+xmlns:tools="http://schemas.android.com/tools"
+
+we can use text attribute like:
+	tools:text="one"
+
+This will show the text when we switch to the design view. However, it won't show when we run the app on the screen.
+
 -------------------------
 -------------------------
 -------------------------

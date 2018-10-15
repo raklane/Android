@@ -1253,11 +1253,71 @@ Steps for Custom ArrayAdapter
 6. Link the list to this Custom array Adapter.
 
 -------------------------
+Resolution
 -------------------------
+
+Resolution is how many pixels are there on the device.
+That's why for the image assets there are multiple folders containing the same image with different resolution so as to provide crisp and clear image based on the resolution of the device.
+
+mdpi: medium density	: 160 dpi
+hdpi: high density		: 240 dpi
+xhdpi: extra high density	: 320 dpi
+xxhdpi: extra extra high density	: 480 dpi
+xxxhdpi: extra extra extra high density	: 640 dpi
+
+dpi means dots per inch.
+
+This link has the density of all famous android devices.
+https://material.io/tools/devices/
+
+
+Generally we specify the image's height and width in dp (density independent pixels). So, it looks the same size in all kind of devices.
+So, if we provide an image of lower density, the devices with high resolution will have to stretch the image to fit the pixels.
+If we provide an image with higher density, the devices with lower resolution will have to shrink the image to fit the pixels.
+
+That's why we provide different pixels of image assets which can cater to all kind of devices.
+
 -------------------------
+dp to px conversion
 -------------------------
+
+dp to pixel conversion for different resolution devices is as below:
+
+mdpi: 1 dp = 1 px
+hdpi: 1 dp = 1.5 px
+xhdpi: 1 dp = 2 px
+xxhdpi: 1 dp = 3 px
+xxxhdpi: 1 dp = 4 px
+
+So, if we want the image to be (48dp*48dp) in size, then the image for different resolution has to be:
+
+mdpi: 48px*48px
+hdpi: 72px*72px
+xhdpi: 96px*96px
+xxhdpi: 144px*144px
+xxxhdpi: 192px*192px
+
+Note: Providing different versions of the image asset takes more storage space but at the same time, it uses less processing power.
+
 -------------------------
+Visibility
 -------------------------
+
+We can set the visibility on/off for a view by code.
+
+eg: textView.setVisibility(View.VISIBLE);
+
+If we go to visibility options, there are 3 options:
+	1. View.VISIBLE		: Constant value 0
+	2. View.INVISIBLE	: Constant value 4
+	3. View.GONE		: Constant value 8
+
+Here the elements VISIBLE, INVISIBLE & GONE are in caps. If we see their definition. 
+public static final int VISIBLE;
+
+It is in caps because the constants are classified as final elements and they should be in all caps.
+It is static because it is associated with the class, rather than the object.
+
 -------------------------
 -------------------------
 -------------------------

@@ -1177,14 +1177,81 @@ we can use text attribute like:
 This will show the text when we switch to the design view. However, it won't show when we run the app on the screen.
 
 -------------------------
+Encapsulation
 -------------------------
+
+In java, encapsulation means wrapping the variables and methods inside a class. 
+Variables of the class are private and methods are public. So, other classes can only access those variables by calling the methods of the class.
+
+In this way, the class has control over what is stored in the variables. Also, it can be made read only or write only.
+It is also called as data hiding.
+
 -------------------------
+Abstraction
 -------------------------
+
+Abstractoin is the process of providing the functionality to the user while hiding the implementation details. (same as in encapsulation)
+Abstraction is achieved by abstract classes and interface.
+
+Abstract class defines generalization. Like a shape etc... (different from encapsulation)
+Child class which inherits the abstract class and provides implementation of all the abstract methods of the abstract class defines specification like round, square, dimensions, etc...
+
 -------------------------
+
+In this examples, we need to store 2 strings (default translation, miwok translation) in one object. It is not possible by Array of Strings.
+So we can define our own class Word with 2 variables and use the objects of the class to store the values.
+
+	In Word.class file:
+	
+	public class Word {
+	private String mDefaultTranslation;
+	private String mMiwokTranslation;
+    public Word(String defaultTranslation, String miwokTranslation) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+    }
+	public String getDefaultTranslation() {
+		return mDefaultTranslation;
+	}
+
+	public String getMiwokTranslation() {
+		return mMiwokTranslation;
+	}
+	}
+	
+	In NumberActivity.java file:
+	
+		ArrayList<Word> words = new ArrayList<Word>();
+        words.add(new Word("one","lutti"));
+        words.add(new Word("two","otiiko"));
+        words.add(new Word("three","tolookosu"));
+        words.add(new Word("four","oyyisa"));
+        words.add(new Word("five","massokka"));
+        words.add(new Word("six","temmokka"));
+        words.add(new Word("seven","kenekaku"));
+        words.add(new Word("eight","kevinta"));
+        words.add(new Word("nine","wo'e"));
+        words.add(new Word("ten","na'aacha"));
+
 -------------------------
+
+By default, ArrayAdapter getView method returns a textView. However, our requirement is two have 2 textviews inside 1 listview item.
+So, we will need to create our own custom ArrayAdapter class.
+
 -------------------------
+Shortcut to search in github : T
+
 -------------------------
+Steps for Custom ArrayAdapter
 -------------------------
+
+1. Create a custom list_item.xml layout.
+2. Create a custom class to store the elements to populate the list with list_item structure.
+3. Create an ArrayList of custom class' object and add elements to it.
+4. Create a custom ArrayAdapter which extends from ArrayAdapter of the custom class's object's type.
+5. Create custom constructor and getView method for this custom ArrayAdapter.
+6. Link the list to this Custom array Adapter.
+
 -------------------------
 -------------------------
 -------------------------

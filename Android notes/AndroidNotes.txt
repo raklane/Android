@@ -1318,8 +1318,42 @@ public static final int VISIBLE;
 It is in caps because the constants are classified as final elements and they should be in all caps.
 It is static because it is associated with the class, rather than the object.
 
+
 -------------------------
+MediaPlayer
 -------------------------
+
+To play an audio file, we need to use MediaPlayer class.
+
+1. Add a sample mp3 file to the raw folder of res. if raw folder doesn't exist then create it first.
+	Note: name of the resource file should be all in small letters and digits only.
+2. 
+	Button playButton = (Button) findViewById(R.id.play_button);
+        Button pauseButton = (Button) findViewById(R.id.pause_button);
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.sample);
+
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+            }
+        });
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mediaPlayer.isPlaying()){
+                    mediaPlayer.pause();
+                }else{
+                    mediaPlayer.start();
+                }
+            }
+        });
+		
+Here the MediaPlayer should be declared as either final or an instance (global) variable. 
+Classes inside another class take a copy of these variables and modify them. However, these changes do not reflect on the main variable.
+Hence, just to clear that confusion in java, it is mandatory to declared it either as a global variable or final variable.
+
 -------------------------
 -------------------------
 -------------------------

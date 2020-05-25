@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/name_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/name_hint"
+            android:inputType="textCapWords"
+            android:paddingTop="16dp"/>
+
+        <TextView
+            style="@style/HeadersStyle"
+            android:text="@string/toppings"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/topping_checkbox_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="24dp" />
+
+            <TextView
+                style="@style/AllOtherTexts"
+                android:text="@string/whipped_cream" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <CheckBox
+                android:id="@+id/chocolate_checkbox_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="24dp" />
+
+            <TextView
+                style="@style/AllOtherTexts"
+                android:text="@string/chocolate" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/quantity_label_text_view"
+            style="@style/HeadersStyle"
+            android:text="@string/quantity" />
+
+        <LinearLayout
+            android:id="@+id/quantity_layout_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quantity_label_text_view"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+
+            <Button
+                android:id="@+id/decrement_button_view"
+                android:onClick="decrement"
+                android:text="-"
+                style="@style/SmallButtons"/>
+
+            <TextView
+                android:id="@+id/quantity_text_view"
+                style="@style/AllOtherTexts"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="1" />
+
+
+            <Button
+                style="@style/SmallButtons"
+                android:id="@+id/increment_button_view"
+                android:onClick="increment"
+                android:text="+" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quantity_layout_view"
+            android:onClick="submitOrder"
+            android:text="@string/order"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

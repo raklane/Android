@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Sólo Java</string>
+    <string name="email_subject">Pedido para cafe</string>
+    <string name="name_hint">Nombre</string>
+    <string name="toppings">INGREDIENTES</string>
+    <string name="whipped_cream">Crema batida</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">CANDIDAD</string>
+    <string name="order">Ordenar</string>
+    <string name="email_name">Nombre : <xliff:g id="name" example="rakesh">%s</xliff:g></string>
+    <string name="email_add_whipped_cream">"Agregue la crema batida? "</string>
+    <string name="email_add_chocolate">"Agregue el chocolate? "</string>
+    <string name="email_quantity">"Cantidad: "</string>
+    <string name="email_total">Total: $</string>
+    <string name="email_thank_you">Gracias!</string>
+    <string name="toast_more_than_100">No puede orden mas de 100 cafe.</string>
+    <string name="toast_less_than_1">No puede order menus de 1 cafe.</string>
+</resources>

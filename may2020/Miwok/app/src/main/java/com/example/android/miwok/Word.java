@@ -5,16 +5,19 @@ public class Word {
     private String mMivokTranslation;
     private String mDefaultTranslation;
     private int mImageResourceId;
+    private int mAudioResourceId;
 
-    public Word(String defaultTranslation, String mivokTranslation){
+    public Word(String defaultTranslation, String mivokTranslation, int audioResourceId){
         mMivokTranslation = mivokTranslation;
         mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioResourceId;
     }
 
-    public Word(String defaultTranslation, String mivokTranslation, int imageResourceId){
+    public Word(String defaultTranslation, String mivokTranslation, int imageResourceId, int audioResourceId){
         mMivokTranslation = mivokTranslation;
         mDefaultTranslation = defaultTranslation;
         mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
     }
 
     public String getmMivokTranslation() {
@@ -27,5 +30,9 @@ public class Word {
 
     public int getmImageId() {
         return mImageResourceId;
+    }
+
+    public int getmAudioResourceId() {
+        return mAudioResourceId;
     }
 }
